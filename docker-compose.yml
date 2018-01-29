@@ -20,6 +20,7 @@ services:
   esb-mgr:
     image: docker.wso2.com/wso2esb:5.0.0
     container_name: esb-mgr
+    command: /mnt/wso2esb-5.0.0/bin/wso2server.sh -Dsetup
 
     networks:
       bridge-net1:
@@ -35,6 +36,7 @@ services:
   esb-wkr1:
     image: docker.wso2.com/wso2esb:5.0.0
     container_name: esb-wkr1
+    command: /mnt/wso2esb-5.0.0/bin/wso2server.sh -DworkerNode=true
 
     networks:
       bridge-net1:
