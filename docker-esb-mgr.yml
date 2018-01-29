@@ -3,7 +3,9 @@ services:
   esb-mgr:
     image:  docker.wso2.com/wso2esb:5.0.0
     container_name: esb-mgr
-    command: /mnt/wso2esb-5.0.0/bin/wso2server.sh
+    environment:
+        - STARTUP_ARGS=-Dsetup
+#    entrypoint: /mnt/wso2esb-5.0.0/bin/wso2server.sh
 
 
 
