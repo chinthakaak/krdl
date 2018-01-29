@@ -13,6 +13,7 @@ services:
       - 80:80
       - 443:443
       - 9443:9443
+      - 9444:9444
 
     volumes:
       - lbl-conf:/etc/nginx
@@ -20,8 +21,8 @@ services:
   esb-mgr:
     image: docker.wso2.com/wso2esb:5.0.0
     container_name: esb-mgr
-    environment:
-        - STARTUP_ARGS=-Dsetup
+#    environment:
+#        - STARTUP_ARGS=-Dsetup
 
     networks:
       bridge-net1:
@@ -37,8 +38,8 @@ services:
   esb-wkr1:
     image: docker.wso2.com/wso2esb:5.0.0
     container_name: esb-wkr1
-    environment:
-        - STARTUP_ARGS=-DworkerNode=true
+#    environment:
+#        - STARTUP_ARGS=-DworkerNode=true
 
     networks:
       bridge-net1:
@@ -50,10 +51,33 @@ services:
 
     volumes:
       - esb-wkr1-conf:/opt/wso2esb-5.0.0/repository/conf
+
+  das-mgr:
+    image:  chinthakaak/wso2das:3.1.0
+    container_name: das-mgr
+
+    networks:
+      bridge-net1:
+        ipv4_address: 169.69.69.5 # if we set a ip scaling will not be possible
+
+    volumes:
+      - das-mgr-conf:/opt/wso2das-3.1.0/repository/conf
+
+#  das-mgr:
+#    image:  docker.wso2.com/wso2esb-analytics:5.0.0
+#    container_name: das-mgr
+#
+#    networks:
+#      bridge-net1:
+#        ipv4_address: 169.69.69.5
+#
+#    volumes:
+#      - das-mgr-conf:/opt/wso2das-5.0.0/repository/conf
 volumes:
   lbl-conf:
   esb-mgr-conf:
   esb-wkr1-conf:
+  das-mgr-conf:
 
 networks:
   bridge-net1:
