@@ -41,3 +41,19 @@ services:
         ipv4_address: 169.69.69.4 # if we set a ip scaling will not be possible
 
 #    ports:
+#      - 9443:9443
+#      - 8280:8280
+
+    volumes:
+      - esb-wkr1-conf:/opt/wso2esb-5.0.0/repository/conf
+volumes:
+  lbl-conf:
+  esb-mgr-conf:
+  esb-wkr1-conf:
+
+networks:
+  bridge-net1:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 169.69.69.0/24
