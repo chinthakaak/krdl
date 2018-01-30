@@ -63,13 +63,13 @@ services:
     volumes:
       - das-mgr-conf:/opt/wso2das-3.1.0/repository/conf
 
-#  das-mgr:
-#    image:  docker.wso2.com/wso2esb-analytics:5.0.0
-#    container_name: das-mgr
-#
-#    networks:
-#      bridge-net1:
-#        ipv4_address: 169.69.69.5
+  das-wkr1:
+    image:  docker.wso2.com/wso2esb-analytics:5.0.0
+    container_name: das-wkr1
+
+    networks:
+      bridge-net1:
+        ipv4_address: 169.69.69.6
 #
 #    volumes:
 #      - das-mgr-conf:/opt/wso2das-5.0.0/repository/conf
