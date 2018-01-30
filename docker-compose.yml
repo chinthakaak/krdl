@@ -1,86 +1,35 @@
 version: "3.0"
 services:
-  lbl:
-    image: nginx:latest
-    container_name: lbl
-#    deploy:            # deploy works only with swarm mode
-#      repicas: 1
-    networks:
-      bridge-net1:
-        ipv4_address: 169.69.69.2 # if we set a ip scaling will not be possible
+  esb:
+    image: docker.wso2.com/wso2esb:5.0.0
+    container_name: esb
 
     ports:
-      - 80:80
-      - 443:443
       - 9443:9443
-      - 9444:9444
-
-    volumes:
-      - lbl-conf:/etc/nginx
-
-  esb-mgr:
-    image: docker.wso2.com/wso2esb:5.0.0
-    container_name: esb-mgr
-#    environment:
-#        - STARTUP_ARGS=-Dsetup
+      - 8280:8280
 
     networks:
       bridge-net1:
-        ipv4_address: 169.69.69.3 # if we set a ip scaling will not be possible
+        ipv4_address: 169.69.69.2
 
-#    ports:
-#      - 9443:9443
-#      - 8280:8280
-
-    volumes:
-      - esb-mgr-conf:/opt/wso2esb-5.0.0/repository/conf
-
-  esb-wkr1:
-    image: docker.wso2.com/wso2esb:5.0.0
-    container_name: esb-wkr1
-#    environment:
-#        - STARTUP_ARGS=-DworkerNode=true
-
-    networks:
-      bridge-net1:
-        ipv4_address: 169.69.69.4 # if we set a ip scaling will not be possible
-
-#    ports:
-#      - 9443:9443
-#      - 8280:8280
-
-    volumes:
-      - esb-wkr1-conf:/opt/wso2esb-5.0.0/repository/conf
-
-  das-mgr:
+  das:
     image:  chinthakaak/wso2das:3.1.0
-    container_name: das-mgr
+    container_name: das
+
+    ports:
+      - 9444:9444
+      - 8281:8281
 
     networks:
-      bridge-net1:
-        ipv4_address: 169.69.69.5 # if we set a ip scaling will not be possible
+      bridge-net:
+        ipv4_address: 169.69.69.3
 
-    volumes:
-      - das-mgr-conf:/opt/wso2das-3.1.0/repository/conf
-
-  das-wkr1:
-    image:  docker.wso2.com/wso2esb-analytics:5.0.0
-    container_name: das-wkr1
-
-    networks:
-      bridge-net1:
-        ipv4_address: 169.69.69.6
-#
-#    volumes:
-#      - das-mgr-conf:/opt/wso2das-5.0.0/repository/conf
 volumes:
-  lbl-conf:
-  esb-mgr-conf:
-  esb-wkr1-conf:
-  das-mgr-conf:
+  esb-conf:
+  das-conf:
 
 networks:
-  bridge-net1:
+  bridge-net:
     driver: bridge
     ipam:
       config:
