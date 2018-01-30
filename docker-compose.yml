@@ -3,27 +3,32 @@ services:
   esb:
     image: docker.wso2.com/wso2esb:5.0.0
     container_name: esb
-
     ports:
       - 9443:9443
       - 8280:8280
-
     networks:
-      bridge-net1:
+      bridge-net:
         ipv4_address: 169.69.69.2
 
   das:
-    image:  chinthakaak/wso2das:3.1.0
+    image: chinthakaak/wso2das:3.1.0
     container_name: das
-
     ports:
       - 9444:9444
       - 8281:8281
-
     networks:
       bridge-net:
         ipv4_address: 169.69.69.3
 
+  esb-samples:
+    image: chinthakaak/esb-samples:1.0.0
+    container_name: esb-samples
+    ports:
+      - 9000:9000
+      - 9002:9002
+    networks:
+      bridge-net:
+        ipv4_address: 169.69.69.4
 volumes:
   esb-conf:
   das-conf:
