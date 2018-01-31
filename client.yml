@@ -1,0 +1,5 @@
+version: '3.0'
+services:
+  client:
+    image: tomcat:9-alpine
+    container_name: client
