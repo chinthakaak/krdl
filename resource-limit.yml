@@ -1,0 +1,16 @@
+# only support in swarm mode
+version: "3.0"
+services:
+  esb1:
+    image: docker.wso2.com/wso2esb:5.0.0
+    container_name: esb1
+    deploy:
+      resources:
+        limits:
+          memory: '20M'
+          cpus: '0.50'
+#    ports:
+#      - 9443:9443
+#      - 8280:8280
+#    networks:
+#      bridge-net:
