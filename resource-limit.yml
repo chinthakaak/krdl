@@ -5,6 +5,7 @@ services:
     image: docker.wso2.com/wso2esb:5.0.0
     container_name: esb1
     deploy:
+      replicas: 2
       resources:
         limits:
           memory: '20M'
