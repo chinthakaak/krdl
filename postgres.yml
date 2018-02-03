@@ -1,10 +1,11 @@
-version: '3'3'
+version: '3.3'
 services:
-  image: postgres:10.1
-  container_name: postgres
+  postgres:
+    image: postgres:10.1
+    container_name: postgres
 
     ports:
-      - 5432:5432
+      - 5430:5432
 
     networks:
       bridge-net:
