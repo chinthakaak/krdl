@@ -1,0 +1,23 @@
+version: "3.0"
+services:
+  esb:
+    image: docker.wso2.com/wso2esb:5.0.0
+    container_name: esb
+#    network_mode: 'host'
+#    ports:
+#      - 9443:9443
+#      - 8280:8280
+
+#networks:
+#    dockernet:
+#        external: true
+    networks:
+      bridge-net:
+        ipv4_address: 169.169.69.60
+
+networks:
+  bridge-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 169.169.69.0/24
