@@ -1,0 +1,7 @@
+version: '3.3'
+services:
+  client:
+    image: jenkins/jenkins:alpine
+    container_name: jenkins
+    ports:
+      - 8080:8080
