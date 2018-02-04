@@ -1,0 +1,2 @@
+::FOR /F "tokens=*" %%i IN ('docker images --format "{{.Repository}}-{{.Tag}}"') DO docker save %%i -o D:\data\docker\image-backups\%%i.tar
+FOR /F "tokens=*" %%i IN ('docker images -q') DO docker save %%i -o D:\data\docker\image-backups\%%i.tar
