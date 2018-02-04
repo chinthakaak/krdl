@@ -20,15 +20,46 @@ services:
       bridge-net:
         ipv4_address: 169.69.69.3
 
-  esb-samples:
-    image: chinthakaak/esb-samples:1.0.0
-    container_name: esb-samples
+  device:
+    image : chinthakaak/nodered:iot-slim
+    container_name: device
     ports:
-      - 9000:9000
-      - 9002:9002
+      - 1880:1880
+    volumes:
+      - D:\data\git_projects\krdl\volumes\iot-conf:/data
     networks:
       bridge-net:
         ipv4_address: 169.69.69.4
+
+  client:
+    image: tomcat:9-alpine
+    container_name: client
+    ports:
+      - 8080:8080
+    volumes:
+      - D:\\data\\kraydel\\codebaseui\\kraydel\\Kraydel-client\\WebContent:/usr/local/tomcat/webapps/Kraydel-client
+    networks:
+      bridge-net:
+        ipv4_address: 169.69.69.5
+
+  postgres:
+    image: postgres:10.1
+    container_name: postgres
+    ports:
+      - 5432:5432
+    networks:
+      bridge-net:
+        ipv4_address: 169.69.69.6
+
+  mysql:
+    image: mysql:8.0.3
+    container_name: mysql
+    ports:
+      - 3306:3306
+    networks:
+      bridge-net:
+        ipv4_address: 169.69.69.7
+
 volumes:
   esb-conf:
   das-conf:
