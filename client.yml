@@ -6,4 +6,4 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - D:\\data\\kraydel\\codebaseui\\kraydel\\Kraydel-client\\WebContent\\dist:/usr/local/tomcat/webapps
+      - D:\\data\\kraydel\\codebaseui\\kraydel\\Kraydel-client\\WebContent:/usr/local/tomcat/webapps/Kraydel-client
