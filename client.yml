@@ -3,3 +3,7 @@ services:
   client:
     image: tomcat:9-alpine
     container_name: client
+    ports:
+      - 8080:8080
+    volumes:
+      - D:\\data\\kraydel\\codebaseui\\kraydel\\Kraydel-client\\WebContent\\dist:/usr/local/tomcat/webapps
