@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  esb-samples:
+    image: chinthakaak/esb-samples:1.0.0
+    container_name: esb-samples
+    ports:
+      - 9000:9000
+      - 9002:9002
+#    networks:
+#      bridge-net:
+#        ipv4_address: 169.69.69.4
