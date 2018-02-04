@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  device:
+#    image: nodered/node-red-docker:slim
+    image: chinthakaak/nodered:iot-slim
+    container_name: device
+#    environment:
+#      - FLOWS=iot-conf/flows.json
+    volumes:
+      - D:\data\git_projects\krdl\volumes\iot-conf:/data
+    ports:
+      - 1880:1880
+
+#volumes:
+#  red-conf:

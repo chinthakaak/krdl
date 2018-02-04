@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  device2:
+    image: nodered/node-red-docker:slim
+#    image: chinthakaak/nodered:1.0.0
+    container_name: device2
+#    environment:
+#      - FLOWS=red-conf\flows.json
+#    volumes:
+#      - D:\data\git_projects\krdl\volumes\red-conf:/data
+    ports:
+      - 1881:1880
+
+#volumes:
+#  red-conf:
