@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  postgres-3:
+    image: postgres:10.1
+    container_name: postgres-3
+    volumes:
+      - pgdata-3:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+volumes:
+  pgdata-3:

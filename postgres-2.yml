@@ -1,15 +1,19 @@
 version: '3.3'
 services:
-  postgres:
+  postgres-2:
     image: postgres:10.1
-    container_name: postgres
-
+    container_name: postgres-2
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     ports:
-      - 5430:5432
+      - 5433:5432
 
     networks:
       bridge-net:
         ipv4_address: 169.169.69.61
+
+volumes:
+  pgdata:
 
 networks:
   bridge-net:
