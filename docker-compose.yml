@@ -35,7 +35,7 @@ services:
     image: tomcat:9-alpine
     container_name: client
     ports:
-      - 8080:8080
+      - 8082:8080
     volumes:
       - D:\\data\\kraydel\\codebaseui\\kraydel\\Kraydel-client\\WebContent:/usr/local/tomcat/webapps/Kraydel-client
     networks:
@@ -54,11 +54,46 @@ services:
   mysql:
     image: mysql:8.0.3
     container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
     ports:
       - 3306:3306
     networks:
       bridge-net:
         ipv4_address: 169.69.69.7
+
+  server:
+    image: openjdk:8-alpine
+    container_name: server
+    working_dir: /mnt/kraydel-platform
+    volumes:
+      - D:\data\kraydel\codebase1\kraydel\kraydel-platform\kraydel-server\target:/mnt/kraydel-platform
+    entrypoint: java -jar -Dspring.profiles.active=dev kraydel-server-1.0-SNAPSHOT.jar
+    networks:
+      bridge-net:
+        ipv4_address: 169.69.69.8
+
+  pushevet:
+    image: openjdk:8-alpine
+    container_name: pushevent
+    working_dir: /mnt/kraydel-platform
+    volumes:
+      - D:\data\kraydel\codebase1\kraydel\kraydel-platform\kraydel-pushevent\target:/mnt/kraydel-platform
+    entrypoint: java -jar -Dspring.profiles.active=dev kraydel-pushevent-1.0-SNAPSHOT.jar
+    networks:
+      bridge-net:
+        ipv4_address: 169.69.69.9
+
+  oauth:
+    image: openjdk:8-alpine
+    container_name: oauth
+    networks:
+      bridge-net:
+        ipv4_address: 169.69.69.10
+    working_dir: /mnt/kraydel-platform
+    volumes:
+      - D:\data\kraydel\codebase1\kraydel\kraydel-platform\kraydel-oauth-server\target:/mnt/kraydel-platform
+    entrypoint: java -jar -Dspring.profiles.active=dev kraydel-oauth-server.jar
 
 volumes:
   esb-conf:
