@@ -1,20 +1,20 @@
 version: '3.3'
 services:
-  server-1:
+  server:
     image: java:openjdk-8
-    container_name: server-1
+    container_name: server
     working_dir: /mnt/kraydel-platform
     depends_on:
-      - postgres-1
+      - postgres
     volumes:
       - D:\data\kraydel\codebase1\kraydel\kraydel-platform\kraydel-server\target:/mnt/kraydel-platform
     entrypoint: java -jar -Dspring.profiles.active=local kraydel-server-1.0-SNAPSHOT.jar
 
-  postgres-1:
+  postgres:
     image: postgres:10.1
-    container_name: postgres-1
+    container_name: postgres
     ports:
-      - 5430:5432
+      - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
 volumes:
