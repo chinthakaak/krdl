@@ -1,0 +1,52 @@
+version: '3.3'
+services:
+  server:
+    image: java:openjdk-8
+    container_name: server
+    working_dir: /mnt/kraydel-platform
+    depends_on:
+      - postgres
+    volumes:
+      - D:\data\kraydel\codebase1\kraydel\kraydel-platform\kraydel-server\target:/mnt/kraydel-platform
+    entrypoint: java -jar -Dspring.profiles.active=local kraydel-server-1.0-SNAPSHOT.jar
+    ports:
+      - 8080:8080
+
+
+  oauth:
+    image: java:openjdk-8
+    container_name: oauth
+    working_dir: /mnt/kraydel-platform
+    depends_on:
+      - postgres
+    volumes:
+      - D:\data\kraydel\codebase1\kraydel\kraydel-platform\kraydel-oauth-server\target:/mnt/kraydel-platform
+#    command: java -jar -Dspring.profiles.active=local -Dlogging.level.com.mitrai.kraydel=INFO kraydel-oauth-server.jar
+#    entrypoint: nohup java -jar -Dspring.profiles.active=local kraydel-oauth-server.jar >server-oauth.out 2>&1&
+#    entrypoint: java -Dspring.profiles.active=local -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=n -jar kraydel-oauth-server.jar
+    entrypoint: java -Dspring.profiles.active=local -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -jar kraydel-oauth-server.jar
+    ports:
+      - 8081:8081
+      - 5005:5005
+
+  pushevent:
+    image: openjdk:8-alpine
+    container_name: pushevent
+    working_dir: /mnt/kraydel-platform
+    depends_on:
+      - postgres
+    volumes:
+      - D:\data\kraydel\codebase1\kraydel\kraydel-platform\kraydel-pushevent\target:/mnt/kraydel-platform
+    entrypoint: java -jar -Dspring.profiles.active=local kraydel-pushevent-1.0-SNAPSHOT.jar
+    ports:
+      - 9080:9080
+
+  postgres:
+    image: postgres:10.1
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
