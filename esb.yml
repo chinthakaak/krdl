@@ -7,10 +7,10 @@ services:
       - 9443:9443
       - 8280:8280
     volumes:
-      - .\volumes\esb\repository\components\lib:/mnt/wso2esb-5.0.0/repository/components/lib
-      - .\volumes\esb\repository\conf\datasources:/mnt/wso2esb-5.0.0/repository/conf/datasources
-      - .\volumes\esb\repository\resources\security:/mnt/wso2esb-5.0.0/repository/resources/security
-      - .\volumes\esb\repository\deployment\server\carbonapps:/mnt/wso2esb-5.0.0/repository/deployment/server/carbonapps
+      - ./volumes/esb/repository/components/lib:/mnt/wso2esb-5.0.0/repository/components/lib
+      - ./volumes/esb/repository/conf/datasources:/mnt/wso2esb-5.0.0/repository/conf/datasources
+      - ./volumes/esb/repository/resources/security:/mnt/wso2esb-5.0.0/repository/resources/security
+      - ./volumes/esb/repository/deployment/server/carbonapps:/mnt/wso2esb-5.0.0/repository/deployment/server/carbonapps
 
 #networks:
 #    dockernet:

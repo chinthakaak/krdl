@@ -1,0 +1,27 @@
+version: "3.0"
+services:
+  esb:
+    image: docker.wso2.com/wso2esb:5.0.0
+    container_name: esb
+    ports:
+      - 9443:9443
+      - 8280:8280
+    volumes:
+      - .\volumes\esb\repository\components\lib:/mnt/wso2esb-5.0.0/repository/components/lib
+      - .\volumes\esb\repository\conf\datasources:/mnt/wso2esb-5.0.0/repository/conf/datasources
+      - .\volumes\esb\repository\resources\security:/mnt/wso2esb-5.0.0/repository/resources/security
+      - .\volumes\esb\repository\deployment\server\carbonapps:/mnt/wso2esb-5.0.0/repository/deployment/server/carbonapps
+
+#networks:
+#    dockernet:
+#        external: true
+    networks:
+      bridge-net:
+        ipv4_address: 169.169.69.60
+
+networks:
+  bridge-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 169.169.69.0/24
