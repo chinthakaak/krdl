@@ -1,0 +1,29 @@
+version: "3.0"
+services:
+  esb-1.8:
+    image: chinthakaak/wso2esb:wso2esb-5.0.0
+    container_name: esb-1.8
+    ports:
+      - 9443:9443
+      - 8280:8280
+    volumes:
+      - ./volumes/esb/repository/components/lib/1.8:/mnt/wso2esb-5.0.0/repository/components/lib
+      - ./volumes/esb/repository/conf/datasources:/mnt/wso2esb-5.0.0/repository/conf/datasources
+      - ./volumes/esb/repository/resources/security/1.8:/mnt/wso2esb-5.0.0/repository/resources/security
+      - ./volumes/esb/repository/deployment/server/carbonapps/1.8:/mnt/wso2esb-5.0.0/repository/deployment/server/carbonapps
+      - ./volumes/esb/repository/deployment/server/synapse-configs/default/inbound-endpoints:/mnt/wso2esb-5.0.0/repository/deployment/server/synapse-configs/default/inbound-endpoints
+#      - ./volumes/esb/java/jdk1.8.0_121/security:/mnt/jdk1.8.0_121/jre/lib/security
+
+#networks:
+#    dockernet:
+#        external: true
+#    networks:
+#      bridge-net:
+#        ipv4_address: 169.169.69.60
+#
+#networks:
+#  bridge-net:
+#    driver: bridge
+#    ipam:
+#      config:
+#        - subnet: 169.169.69.0/24
