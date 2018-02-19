@@ -11,4 +11,3 @@ services:
       - ./volumes/esb-5/repository/conf/datasources:/mnt/wso2esb-5.0.0/repository/conf/datasources
       - ./volumes/esb-5/repository/resources/security:/mnt/wso2esb-5.0.0/repository/resources/security
       - ./volumes/esb-5/repository/deployment/server/carbonapps:/mnt/wso2esb-5.0.0/repository/deployment/server/carbonapps
-      - ./volumes/esb-5/repository/deployment/server/synapse-configs/default/inbound-endpoints:/mnt/wso2esb-5.0.0/repository/deployment/server/synapse-configs/default/inbound-endpoints

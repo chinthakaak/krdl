@@ -1,7 +1,13 @@
 version: '3.3'
 services:
-  das-mgr:
-    image:  chinthakaak/wso2-das:3.1.0
-    container_name: das-mgr
-#    environment:
-#        - STARTUP_ARGS=-Dsetup
+  das:
+    image:  chinthakaak/wso2das:wso2das-3.1.0
+    container_name: das
+    ports:
+      - 9444:9443
+      - 8281:8280
+      - 7711:7711
+      - 7611:7611
+    volumes:
+      - ./volumes/das/repository/components/lib:/mnt/wso2das-3.1.0/repository/components/lib
+      - ./volumes/das/repository/resources/security:/mnt/wso2das-3.1.0/repository/resources/security
