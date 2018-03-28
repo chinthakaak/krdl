@@ -1,0 +1,1 @@
+sonar-scanner -Dsonar.login=admin -Dsonar.password=admin -Dsonar.host.url=http://192.168.1.3:9000
