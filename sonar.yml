@@ -6,5 +6,7 @@ services:
     ports:
       - 9000:9000
       - 9092:9092
-    volumes:
-      - ./volumes/sonar/data:/opt/sonarqube/data
+#    volumes:
+#      - sonardata:/opt/sonarqube/data/sonar.h2.db22000
+#volumes:
+#  sonardata:
